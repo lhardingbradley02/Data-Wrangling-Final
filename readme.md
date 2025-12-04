@@ -1,17 +1,13 @@
---
-title: "Summarizing"
-format:
-  html:
-    toc: true
-    toc-location: left
-    self-contained: true
-jupyter: python3
---
+# Examining Ireland’s Post-2008-Collapse Housing Market
+
 
 ## Aim
-Considering the controvery surrounding the housing crisis in Ireland, I wanted to examine recent housing data in Ireland, aiming to understand potential contributory factors towards the increase in price. 
 
-```{python}
+Considering the controvery surrounding the housing crisis in Ireland, I
+wanted to examine recent housing data in Ireland, aiming to understand
+potential contributory factors towards the increase in price.
+
+``` python
 import pandas as pd
 import numpy as np
 from plotnine import *
@@ -20,19 +16,17 @@ import seaborn as sns
 import statsmodels.api as sm
 ```
 
+With a dataset of Irish housing transactions (2010-2021) Source: Kaggle
+(https://www.kaggle.com/datasets/erinkhoo/property-price-register-ireland)
 
-With a dataset of Irish housing transactions (2010-2021)
-Source: Kaggle (https://www.kaggle.com/datasets/erinkhoo/property-price-register-ireland)
-
-```{python}
+``` python
 prop = pd.read_excel('C:/Users/lehb1/Downloads/Prop_Price.xlsx')
 prop.columns = [col.lower() for col in prop.columns]
 ```
 
-
 ## Question 1: How have the prices of new housing units increased?
 
-```{python}
+``` python
 #analyzing new houses
 prop1 = prop[prop['property_desc'] == 'New Dwelling house /Apartment'].reset_index(drop=True)
 
@@ -62,9 +56,11 @@ plt.ylabel('% Change')
 plt.show()
 ```
 
+![](readme_files/figure-commonmark/cell-4-output-1.png)
+
 ## Question 2: Looking at Dublin, how have the prices overall (new and pre-existing units) increased?
 
-```{python}
+``` python
 prop2 = prop.copy()
 prop2 = prop2[prop2['county'] == 'Dublin']
 p2 = pd.DataFrame()
@@ -86,12 +82,13 @@ plt.title('Dublin Mean Property Prices 2010-2021')
 plt.xlabel('Year')
 plt.ylabel('Property Price')
 plt.show()
-
 ```
 
-## Question 3: Are there any areas in Dublin that are driving this significant increase in price? 
+![](readme_files/figure-commonmark/cell-5-output-1.png)
 
-```{python}
+## Question 3: Are there any areas in Dublin that are driving this significant increase in price?
+
+``` python
 prop3 = prop.copy()
 prop3 = prop[prop['postal_code'].notna()]
 
@@ -114,12 +111,15 @@ plt.ylabel('log_price (in euros)')
 plt.show()
 ```
 
-Considering the results, we can see that Ballsbridge/Donnybrook (D4), Rathmines/Ranelagh (D6), and Dundrum/Churchtown (D14) have the highest prices, with D4 and D6 outliers significantly higher than others.  
+![](readme_files/figure-commonmark/cell-6-output-1.png)
 
+Considering the results, we can see that Ballsbridge/Donnybrook (D4),
+Rathmines/Ranelagh (D6), and Dundrum/Churchtown (D14) have the highest
+prices, with D4 and D6 outliers significantly higher than others.
 
 ## Question 4: Are these houses being sold above market value? If so, why?
 
-```{python}
+``` python
 prop4 = prop.copy()
 #need to explode the desc column
 
@@ -138,8 +138,6 @@ for index, row in prop4_updated.iterrows():
 if drops:
     prop4_updated = prop4_updated.drop(drops)
 
-#prop3_updated.drop_duplicates(subset=['property_size_desc'])
-
 prop4_encoded = pd.get_dummies(prop4_updated, columns=['property_size_desc'])
 prop4_encoded['post_code'] = prop4['postal_code'].str.extract('(\d+)')
 
@@ -151,4 +149,39 @@ results = m1.fit()
 print(results.summary())
 ```
 
-Unfortunately, our available features for analyzing these residences is limited to their size, so we can only regress on sq metres.  Based on the above regression, while the p-values do show some significance, the R^2 value (0.01) indicates that this regression (looking at property size) cannot predict whether a property is sold for above market price.  Looking forward, I would like to analyze the features of these housing units, and more in-depth data on Dublin to determine contributory factors towards the heightened housing costs.  
+                                OLS Regression Results                            
+    ==============================================================================
+    Dep. Variable:        if_market_price   R-squared:                       0.002
+    Model:                            OLS   Adj. R-squared:                  0.002
+    Method:                 Least Squares   F-statistic:                     28.03
+    Date:                Thu, 04 Dec 2025   Prob (F-statistic):           4.22e-18
+    Time:                        11:24:32   Log-Likelihood:                 20333.
+    No. Observations:               52789   AIC:                        -4.066e+04
+    Df Residuals:                   52785   BIC:                        -4.062e+04
+    Df Model:                           3                                         
+    Covariance Type:            nonrobust                                         
+    ========================================================================================================================================================
+                                                                                               coef    std err          t      P>|t|      [0.025      0.975]
+    --------------------------------------------------------------------------------------------------------------------------------------------------------
+    property_size_desc_greater than 125 sq metres                                            0.0153      0.002      7.703      0.000       0.011       0.019
+    property_size_desc_greater than or equal to 125 sq metres                                0.0174      0.002      7.165      0.000       0.013       0.022
+    property_size_desc_greater than or equal to 38 sq metres and less than 125 sq metres     0.0319      0.001     37.795      0.000       0.030       0.034
+    property_size_desc_less than 38 sq metres                                                0.0230      0.003      7.974      0.000       0.017       0.029
+    ==============================================================================
+    Omnibus:                    56093.274   Durbin-Watson:                   1.376
+    Prob(Omnibus):                  0.000   Jarque-Bera (JB):          2366160.275
+    Skew:                           5.717   Prob(JB):                         0.00
+    Kurtosis:                      33.741   Cond. No.                         3.42
+    ==============================================================================
+
+    Notes:
+    [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Unfortunately, our available features for analyzing these residences is
+limited to their size, so we can only regress on sq metres. Based on the
+above regression, while the p-values do show some significance, the R^2
+value (0.01) indicates that this regression (looking at property size)
+cannot predict whether a property is sold for above market price.
+Looking forward, I would like to analyze the features of these housing
+units, and more in-depth data on Dublin to determine contributory
+factors towards the heightened housing costs.

@@ -1,5 +1,5 @@
 ---
-title: "Examining Ireland's Housing Crisis"
+title: "Examining Ireland's Post-2008-Collapse Housing Market"
 format: gfm 
 execute: 
   warning: false
@@ -138,8 +138,6 @@ for index, row in prop4_updated.iterrows():
         drops.append(index)
 if drops:
     prop4_updated = prop4_updated.drop(drops)
-
-#prop3_updated.drop_duplicates(subset=['property_size_desc'])
 
 prop4_encoded = pd.get_dummies(prop4_updated, columns=['property_size_desc'])
 prop4_encoded['post_code'] = prop4['postal_code'].str.extract('(\d+)')
