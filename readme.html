@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Demonstrating Quarto for GitHub READMEs</title>
+<title>Examining Ireland’s Housing Crisis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Demonstrating Quarto for GitHub READMEs</h1>
+<h1 class="title">Examining Ireland’s Housing Crisis</h1>
 </div>
 
 
@@ -103,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="aim" class="level2">
 <h2 class="anchored" data-anchor-id="aim">Aim</h2>
 <p>Considering the controvery surrounding the housing crisis in Ireland, I wanted to examine recent housing data in Ireland, aiming to understand potential contributory factors towards the increase in price.</p>
-<div id="668d6709" class="cell" data-execution_count="1">
+<div id="5a75ef88" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
@@ -112,14 +112,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>With a dataset of Irish housing transactions (2010-2021) Source: Kaggle (https://www.kaggle.com/datasets/erinkhoo/property-price-register-ireland)</p>
-<div id="f10fcf5b" class="cell" data-execution_count="2">
+<div id="da91a523" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>prop <span class="op">=</span> pd.read_excel(<span class="st">'C:/Users/lehb1/Downloads/Prop_Price.xlsx'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>prop.columns <span class="op">=</span> [col.lower() <span class="cf">for</span> col <span class="kw">in</span> prop.columns]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="question-1-how-have-the-prices-of-new-housing-units-increased" class="level2">
 <h2 class="anchored" data-anchor-id="question-1-how-have-the-prices-of-new-housing-units-increased">Question 1: How have the prices of new housing units increased?</h2>
-<div id="ca999f0b" class="cell" data-execution_count="3">
+<div id="efe7fc7b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#analyzing new houses</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>prop1 <span class="op">=</span> prop[prop[<span class="st">'property_desc'</span>] <span class="op">==</span> <span class="st">'New Dwelling house /Apartment'</span>].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -158,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="question-2-looking-at-dublin-how-have-the-prices-overall-new-and-pre-existing-units-increased" class="level2">
 <h2 class="anchored" data-anchor-id="question-2-looking-at-dublin-how-have-the-prices-overall-new-and-pre-existing-units-increased">Question 2: Looking at Dublin, how have the prices overall (new and pre-existing units) increased?</h2>
-<div id="07027f6e" class="cell" data-execution_count="4">
+<div id="46b7aef2" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>prop2 <span class="op">=</span> prop.copy()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>prop2 <span class="op">=</span> prop2[prop2[<span class="st">'county'</span>] <span class="op">==</span> <span class="st">'Dublin'</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> pd.DataFrame()</span>
@@ -191,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="question-3-are-there-any-areas-in-dublin-that-are-driving-this-significant-increase-in-price" class="level2">
 <h2 class="anchored" data-anchor-id="question-3-are-there-any-areas-in-dublin-that-are-driving-this-significant-increase-in-price">Question 3: Are there any areas in Dublin that are driving this significant increase in price?</h2>
-<div id="4a131389" class="cell" data-execution_count="5">
+<div id="33b36a5d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prop3 <span class="op">=</span> prop.copy()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>prop3 <span class="op">=</span> prop[prop[<span class="st">'postal_code'</span>].notna()]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="question-4-are-these-houses-being-sold-above-market-value-if-so-why" class="level2">
 <h2 class="anchored" data-anchor-id="question-4-are-these-houses-being-sold-above-market-value-if-so-why">Question 4: Are these houses being sold above market value? If so, why?</h2>
-<div id="8f9d61fe" class="cell" data-execution_count="6">
+<div id="d4fd0765" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>prop4 <span class="op">=</span> prop.copy()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#need to explode the desc column</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -261,7 +261,7 @@ Dep. Variable:        if_market_price   R-squared:                       0.002
 Model:                            OLS   Adj. R-squared:                  0.002
 Method:                 Least Squares   F-statistic:                     28.03
 Date:                Wed, 03 Dec 2025   Prob (F-statistic):           4.22e-18
-Time:                        21:14:58   Log-Likelihood:                 20333.
+Time:                        21:23:43   Log-Likelihood:                 20333.
 No. Observations:               52789   AIC:                        -4.066e+04
 Df Residuals:                   52785   BIC:                        -4.062e+04
 Df Model:                           3                                         

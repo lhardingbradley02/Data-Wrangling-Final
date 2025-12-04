@@ -1,6 +1,6 @@
 ---
-title: "Demonstrating Quarto for GitHub READMEs"
-format: gfm #github flavored markdown
+title: "Examining Ireland's Housing Crisis"
+format: gfm 
 execute: 
   warning: false
   message: false
