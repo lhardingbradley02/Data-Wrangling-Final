@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>readme</title>
+<title>Demonstrating Quarto for GitHub READMEs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,44 +74,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="readme.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></div>
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Demonstrating Quarto for GitHub READMEs</h1>
+</div>
 
 
 
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td>title: “Summarizing”</td>
-</tr>
-<tr class="even">
-<td>format:gfm</td>
-</tr>
-<tr class="odd">
-<td>html:</td>
-</tr>
-<tr class="even">
-<td>toc: true</td>
-</tr>
-<tr class="odd">
-<td>toc-location: left</td>
-</tr>
-<tr class="even">
-<td>self-contained: true</td>
-</tr>
-<tr class="odd">
-<td>jupyter: python3</td>
-</tr>
-</tbody>
-</table>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <section id="aim" class="level2">
 <h2 class="anchored" data-anchor-id="aim">Aim</h2>
 <p>Considering the controvery surrounding the housing crisis in Ireland, I wanted to examine recent housing data in Ireland, aiming to understand potential contributory factors towards the increase in price.</p>
-<div id="2d8452f1" class="cell" data-execution_count="1">
+<div id="668d6709" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
@@ -120,14 +112,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>With a dataset of Irish housing transactions (2010-2021) Source: Kaggle (https://www.kaggle.com/datasets/erinkhoo/property-price-register-ireland)</p>
-<div id="db2e6958" class="cell" data-execution_count="2">
+<div id="f10fcf5b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>prop <span class="op">=</span> pd.read_excel(<span class="st">'C:/Users/lehb1/Downloads/Prop_Price.xlsx'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>prop.columns <span class="op">=</span> [col.lower() <span class="cf">for</span> col <span class="kw">in</span> prop.columns]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="question-1-how-have-the-prices-of-new-housing-units-increased" class="level2">
 <h2 class="anchored" data-anchor-id="question-1-how-have-the-prices-of-new-housing-units-increased">Question 1: How have the prices of new housing units increased?</h2>
-<div id="85018b82" class="cell" data-execution_count="3">
+<div id="ca999f0b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#analyzing new houses</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>prop1 <span class="op">=</span> prop[prop[<span class="st">'property_desc'</span>] <span class="op">==</span> <span class="st">'New Dwelling house /Apartment'</span>].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -166,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="question-2-looking-at-dublin-how-have-the-prices-overall-new-and-pre-existing-units-increased" class="level2">
 <h2 class="anchored" data-anchor-id="question-2-looking-at-dublin-how-have-the-prices-overall-new-and-pre-existing-units-increased">Question 2: Looking at Dublin, how have the prices overall (new and pre-existing units) increased?</h2>
-<div id="6f9cf79f" class="cell" data-execution_count="4">
+<div id="07027f6e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>prop2 <span class="op">=</span> prop.copy()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>prop2 <span class="op">=</span> prop2[prop2[<span class="st">'county'</span>] <span class="op">==</span> <span class="st">'Dublin'</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> pd.DataFrame()</span>
@@ -199,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="question-3-are-there-any-areas-in-dublin-that-are-driving-this-significant-increase-in-price" class="level2">
 <h2 class="anchored" data-anchor-id="question-3-are-there-any-areas-in-dublin-that-are-driving-this-significant-increase-in-price">Question 3: Are there any areas in Dublin that are driving this significant increase in price?</h2>
-<div id="84b55f74" class="cell" data-execution_count="5">
+<div id="4a131389" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prop3 <span class="op">=</span> prop.copy()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>prop3 <span class="op">=</span> prop[prop[<span class="st">'postal_code'</span>].notna()]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -220,17 +212,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>prop3_asc.boxplot(column<span class="op">=</span><span class="st">'log_sale_price'</span>, by<span class="op">=</span><span class="st">'post_code'</span>, figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>), showfliers<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'log_price (in euros)'</span>)</span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\lehb1\AppData\Local\Temp\ipykernel_35328\4146066170.py:7: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="readme_files/figure-html/cell-6-output-2.png" width="678" height="538" class="figure-img"></p>
+<p><img src="readme_files/figure-html/cell-6-output-1.png" width="678" height="538" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -239,36 +224,36 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </section>
 <section id="question-4-are-these-houses-being-sold-above-market-value-if-so-why" class="level2">
 <h2 class="anchored" data-anchor-id="question-4-are-these-houses-being-sold-above-market-value-if-so-why">Question 4: Are these houses being sold above market value? If so, why?</h2>
-<div id="39bb6506" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>prop4 <span class="op">=</span> prop.copy()</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#need to explode the desc column</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>prop4_updated <span class="op">=</span> prop4[prop4[<span class="st">'property_size_desc'</span>].notna()]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>drops <span class="op">=</span> []</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#removing rows reflecting irish language</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> prop4_updated.iterrows():</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    check <span class="op">=</span> row[<span class="st">'property_size_desc'</span>]</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    cleaned <span class="op">=</span> check.encode(<span class="st">'ascii'</span>, <span class="st">'ignore'</span>).decode(<span class="st">'ascii'</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> check <span class="op">!=</span> cleaned <span class="kw">or</span> <span class="st">'?'</span> <span class="kw">in</span> check:</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        drops.append(index)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> drops:</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    prop4_updated <span class="op">=</span> prop4_updated.drop(drops)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#prop3_updated.drop_duplicates(subset=['property_size_desc'])</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>prop4_encoded <span class="op">=</span> pd.get_dummies(prop4_updated, columns<span class="op">=</span>[<span class="st">'property_size_desc'</span>])</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>prop4_encoded[<span class="st">'post_code'</span>] <span class="op">=</span> prop4[<span class="st">'postal_code'</span>].<span class="bu">str</span>.extract(<span class="st">'(</span><span class="er">\</span><span class="st">d+)'</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> prop4_encoded[<span class="st">'if_market_price'</span>]</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> prop4_encoded[[<span class="st">'property_size_desc_greater than 125 sq metres'</span>, <span class="st">'property_size_desc_greater than or equal to 125 sq metres'</span>, <span class="st">'property_size_desc_greater than or equal to 38 sq metres and less than 125 sq metres'</span>, <span class="st">'property_size_desc_less than 38 sq metres'</span>]]</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> sm.OLS(y, X)</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> m1.fit()</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="8f9d61fe" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>prop4 <span class="op">=</span> prop.copy()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#need to explode the desc column</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>prop4_updated <span class="op">=</span> prop4[prop4[<span class="st">'property_size_desc'</span>].notna()]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>drops <span class="op">=</span> []</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#removing rows reflecting irish language</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> prop4_updated.iterrows():</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    check <span class="op">=</span> row[<span class="st">'property_size_desc'</span>]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    cleaned <span class="op">=</span> check.encode(<span class="st">'ascii'</span>, <span class="st">'ignore'</span>).decode(<span class="st">'ascii'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> check <span class="op">!=</span> cleaned <span class="kw">or</span> <span class="st">'?'</span> <span class="kw">in</span> check:</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        drops.append(index)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> drops:</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    prop4_updated <span class="op">=</span> prop4_updated.drop(drops)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#prop3_updated.drop_duplicates(subset=['property_size_desc'])</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>prop4_encoded <span class="op">=</span> pd.get_dummies(prop4_updated, columns<span class="op">=</span>[<span class="st">'property_size_desc'</span>])</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>prop4_encoded[<span class="st">'post_code'</span>] <span class="op">=</span> prop4[<span class="st">'postal_code'</span>].<span class="bu">str</span>.extract(<span class="st">'(</span><span class="er">\</span><span class="st">d+)'</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> prop4_encoded[<span class="st">'if_market_price'</span>]</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> prop4_encoded[[<span class="st">'property_size_desc_greater than 125 sq metres'</span>, <span class="st">'property_size_desc_greater than or equal to 125 sq metres'</span>, <span class="st">'property_size_desc_greater than or equal to 38 sq metres and less than 125 sq metres'</span>, <span class="st">'property_size_desc_less than 38 sq metres'</span>]]</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> sm.OLS(y, X)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> m1.fit()</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                            OLS Regression Results                            
 ==============================================================================
@@ -276,7 +261,7 @@ Dep. Variable:        if_market_price   R-squared:                       0.002
 Model:                            OLS   Adj. R-squared:                  0.002
 Method:                 Least Squares   F-statistic:                     28.03
 Date:                Wed, 03 Dec 2025   Prob (F-statistic):           4.22e-18
-Time:                        21:06:02   Log-Likelihood:                 20333.
+Time:                        21:14:58   Log-Likelihood:                 20333.
 No. Observations:               52789   AIC:                        -4.066e+04
 Df Residuals:                   52785   BIC:                        -4.062e+04
 Df Model:                           3                                         
