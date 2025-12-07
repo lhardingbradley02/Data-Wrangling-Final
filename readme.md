@@ -26,6 +26,9 @@ prop.columns = [col.lower() for col in prop.columns]
 
 ## Question 1: How have the prices of new housing units increased?
 
+Considering that prices have increased over time, I wanted to understand
+how the price of new housing units have evolved over the past ten years.
+
 ``` python
 #analyzing new houses
 prop1 = prop[prop['property_desc'] == 'New Dwelling house /Apartment'].reset_index(drop=True)
@@ -58,7 +61,15 @@ plt.show()
 
 ![](readme_files/figure-commonmark/cell-4-output-1.png)
 
+As we can see, new housing prices generally decresaed up until 2013, at
+which point the market might have overcorrected, increasing 25%. After
+this jump, the year over year pricing has increased rather steadily.
+
 ## Question 2: Looking at Dublin, how have the prices overall (new and pre-existing units) increased?
+
+Within Dubin, I wanted to dive depeer into how overall prices have
+evolved; considering that Dublin is the capital, shocks to the market
+were likely felt most in Dublin.
 
 ``` python
 prop2 = prop.copy()
@@ -80,11 +91,16 @@ y1 = p2['Mean-Annual-Price']
 y1.plot()
 plt.title('Dublin Mean Property Prices 2010-2021')
 plt.xlabel('Year')
-plt.ylabel('Property Price')
+plt.ylabel('Property Price (in €)')
 plt.show()
 ```
 
 ![](readme_files/figure-commonmark/cell-5-output-1.png)
+
+Similar to the year over year percentage change, the pricing of houses
+has increased steadily since 2015. As we saw, the rate of change for new
+houses increased rapidly, with housing uint prices increasing by €50,000
+per year
 
 ## Question 3: Are there any areas in Dublin that are driving this significant increase in price?
 
@@ -154,8 +170,8 @@ print(results.summary())
     Dep. Variable:        if_market_price   R-squared:                       0.002
     Model:                            OLS   Adj. R-squared:                  0.002
     Method:                 Least Squares   F-statistic:                     28.03
-    Date:                Thu, 04 Dec 2025   Prob (F-statistic):           4.22e-18
-    Time:                        11:24:32   Log-Likelihood:                 20333.
+    Date:                Sun, 07 Dec 2025   Prob (F-statistic):           4.22e-18
+    Time:                        14:01:53   Log-Likelihood:                 20333.
     No. Observations:               52789   AIC:                        -4.066e+04
     Df Residuals:                   52785   BIC:                        -4.062e+04
     Df Model:                           3                                         
